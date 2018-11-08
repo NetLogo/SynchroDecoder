@@ -2,14 +2,16 @@
   "name": "synchrodecoder",
   "description": "A JavaScript library for synchronously decoding JPEGs and PNGs to `ImageData`",
   "repository": "https://github.com/NetLogo/SynchroDecoder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "fast-png":                "3.1.0",
+    "jpeg-js":                 "0.3.4"
+  },
+  "devDependencies": {
     "grunt":                   "1.0.3",
     "grunt-browserify":        "5.3.0",
     "grunt-contrib-coffee":    "1.0.0",
     "grunt-contrib-copy":      "1.0.0",
-    "grunt-contrib-uglify-es": "3.3.0",
-    "jpeg-js":                 "0.3.4"
+    "grunt-contrib-uglify-es": "3.3.0"
   }
 }
