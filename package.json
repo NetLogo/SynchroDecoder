@@ -1,5 +1,5 @@
 {
-  "name": "SynchroDecoder",
+  "name": "synchrodecoder",
   "description": "A JavaScript library for synchronously decoding JPEGs and PNGs to `ImageData`",
   "repository": "https://github.com/NetLogo/SynchroDecoder",
   "version": "1.0.0",
