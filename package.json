@@ -1,8 +1,15 @@
 {
   "name": "synchrodecoder",
   "description": "A JavaScript library for synchronously decoding JPEGs and PNGs to `ImageData`",
+  "version": "1.0.2",
+  "author": "Center for Connected Learning (https://ccl.northwestern.edu/)",
+  "contributors": [
+    "Jason Bertsche <jason.bertsche@gmail.com> (https://www.github.com/TheBizzle)"
+  ],
+  "homepage": "https://ccl.northwestern.edu/netlogo",
+  "keywords": "image, png, jpeg, synchronous",
+  "license": "CC0-1.0",
   "repository": "https://github.com/NetLogo/SynchroDecoder",
-  "version": "1.0.1",
   "dependencies": {
     "fast-png":                "3.1.0",
     "jpeg-js":                 "0.3.4"
