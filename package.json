@@ -12,12 +12,12 @@
   "repository": "https://github.com/NetLogo/SynchroDecoder",
   "dependencies": {
     "fast-png":                "3.1.0",
-    "jpeg-js":                 "0.3.4"
+    "jpeg-js":                 "0.4.1"
   },
   "devDependencies": {
-    "grunt":                   "1.0.3",
+    "grunt":                   "1.2.1",
     "grunt-browserify":        "5.3.0",
-    "grunt-contrib-coffee":    "1.0.0",
+    "grunt-contrib-coffee":    "2.1.0",
     "grunt-contrib-copy":      "1.0.0",
     "grunt-contrib-uglify-es": "3.3.0"
   }
