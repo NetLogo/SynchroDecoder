@@ -6,6 +6,21 @@ SynchroDecoder is a JavaScript library for decoding images to binary data synchr
 
 This library currently only supports JPEGs and PNGs.  If synchrony is not absolutely required for your use case, we strongly recommend seeking a different solution than this library.  This library is *only* for those *desperate* for synchrony.
 
+The library takes the form of an ES6 module that is comprised of only a single function of the following type:
+
+```
+(base64 :: String) =>
+  { array      :: Uint8ClampedArray
+  , didSucceed :: Boolean
+  , height     :: Number
+  , width      :: Number
+  }
+```
+
+If `didSucceed` is `false`, no other properties of the output object are guaranteed to be defined.
+
+Otherwise, `height` and `width` are numbers of pixels.  `array.length` is necessarily equal to `height * width * 4`, as `array` takes the format of a sequence of RGBA values.
+
 ## Example
 
 ```javascript
