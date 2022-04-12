@@ -1,3 +1,6 @@
+{ nodeResolve: resolve } = require('@rollup/plugin-node-resolve')
+commonjs                 = require('@rollup/plugin-commonjs')
+
 module.exports = (grunt) ->
 
   grunt.initConfig({
@@ -10,24 +13,25 @@ module.exports = (grunt) ->
             cwd: 'src/',
             src: ['**/*.coffee'],
             dest: 'target/',
-            ext: '.js'
+            ext: '.mjs'
           }
         ]
       }
     },
-    browserify: {
+    rollup: {
       main: {
-        src: ['target/synchrodecoder.js'],
-        dest: 'dist/synchrodecoder.js',
         options: {
-          alias: []
+          plugins: [resolve({ browser: true }), commonjs()]
+        }
+        files: {
+          'dist/synchrodecoder.mjs': ['target/synchrodecoder.mjs']
         }
       }
-    },
-    uglify: {
+    }
+    terser: {
       main: {
         files: {
-          'dist/synchrodecoder.min.js': ['dist/synchrodecoder.js']
+          'dist/synchrodecoder.min.mjs': ['dist/synchrodecoder.mjs']
         }
       }
     }
@@ -43,9 +47,9 @@ module.exports = (grunt) ->
     }
   })
 
-  grunt.loadNpmTasks('grunt-browserify')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-copy')
-  grunt.loadNpmTasks('grunt-contrib-uglify-es')
+  grunt.loadNpmTasks('grunt-rollup')
+  grunt.loadNpmTasks('grunt-terser')
 
-  grunt.registerTask('default', ['coffee', 'browserify', 'uglify', 'copy:publish'])
+  grunt.registerTask('default', ['coffee', 'rollup', 'terser', 'copy:publish'])

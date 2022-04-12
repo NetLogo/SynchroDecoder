@@ -1,11 +1,13 @@
-PNG  = require('upng-js')
-JPEG = require('jpeg-js' )
+import { Buffer } from 'buffer/index.js'
+
+import PNG  from 'upng-js/UPNG.js'
+import JPEG from 'jpeg-js/index.js'
 
 dataURIToBytes = (uri) ->
   raw = window.atob(uri.slice(uri.indexOf(",") + 1))
   new Uint8Array(new ArrayBuffer(raw.length)).map((_, i) -> raw.charCodeAt(i))
 
-window.synchroDecoder =
+synchroDecoder =
   (b64) ->
     bytes = dataURIToBytes(b64)
     try
@@ -15,12 +17,18 @@ window.synchroDecoder =
         { array, height: image.height, width: image.width, didSucceed: true }
       catch ex
         if ex.includes("is not a PNG")
-          image = JPEG.decode(bytes)
+
+          oldBuffer     = window.Buffer
+          window.Buffer = Buffer
+          image         = JPEG.decode(bytes)
+          window.Buffer = oldBuffer
+
           array = new Uint8ClampedArray(image.data)
           { array, height: image.height, width: image.width, didSucceed: true }
+
         else
           throw ex
     catch e
       { didSucceed: false }
 
-module.exports = synchroDecoder
+export default synchroDecoder
