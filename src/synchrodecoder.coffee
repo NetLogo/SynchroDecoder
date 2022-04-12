@@ -21,7 +21,6 @@ window.synchroDecoder =
         else
           throw ex
     catch e
-      alert("Not a valid PNG or JPEG")
       { didSucceed: false }
 
 module.exports = synchroDecoder
