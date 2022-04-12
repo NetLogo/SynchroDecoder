@@ -4,7 +4,7 @@
 
 SynchroDecoder is a JavaScript library for decoding images to `ImageData` synchronously.  Generally, synchronous image decoding should be avoided, but, for some uses cases, it **must** happen synchronously, and the standard JavaScript approaches (e.g. setting an `Image`'s `src`) don't allow for synchrony.
 
-This library currently only supports JPEGs and PNGs.  It probably has all manner of problems.  If synchrony is not absolutely required for your use case, we strongly recommend seeking a different solution than this library.  This library is *only* for those *desperate* for synchrony.
+This library currently only supports JPEGs and PNGs.  If synchrony is not absolutely required for your use case, we strongly recommend seeking a different solution than this library.  This library is *only* for those *desperate* for synchrony.
 
 ## Example
 
