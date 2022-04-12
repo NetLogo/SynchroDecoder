@@ -12,9 +12,15 @@ synchroDecoder =
     bytes = dataURIToBytes(b64)
     try
       try
+
         image = PNG.decode(bytes)
         array = new Uint8ClampedArray(PNG.toRGBA8(image)[0])
-        { array, height: image.height, width: image.width, didSucceed: true }
+
+        if array.length is (image.height * image.width * 4)
+          { array, height: image.height, width: image.width, didSucceed: true }
+        else
+          throw new Error("Converted PNG bytes have length #{array.length}, but valid PNG bytes would have length #{image.height * image.width * 4}.")
+
       catch ex
         if ex.includes("is not a PNG")
 
@@ -22,9 +28,12 @@ synchroDecoder =
           window.Buffer = Buffer
           image         = JPEG.decode(bytes)
           window.Buffer = oldBuffer
+          array         = new Uint8ClampedArray(image.data)
 
-          array = new Uint8ClampedArray(image.data)
-          { array, height: image.height, width: image.width, didSucceed: true }
+          if array.length is (image.height * image.width * 4)
+            { array, height: image.height, width: image.width, didSucceed: true }
+          else
+            throw new Error("Converted JPEG bytes have length #{array.length}, but valid JPEG bytes would have length #{image.height * image.width * 4}.")
 
         else
           throw ex
