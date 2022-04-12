@@ -11,15 +11,17 @@ window.synchroDecoder =
     try
       try
         image = PNG.decode(bytes)
-        arr   = new Uint8ClampedArray(PNG.toRGBA8(image)[0])
-        new ImageData(arr, image.width, image.height)
+        array = new Uint8ClampedArray(PNG.toRGBA8(image)[0])
+        { array, height: image.height, width: image.width, didSucceed: true }
       catch ex
         if ex.includes("is not a PNG")
           image = JPEG.decode(bytes)
-          new ImageData(new Uint8ClampedArray(image.data), image.width, image.height)
+          array = new Uint8ClampedArray(image.data)
+          { array, height: image.height, width: image.width, didSucceed: true }
         else
           throw ex
     catch e
       alert("Not a valid PNG or JPEG")
+      { didSucceed: false }
 
 module.exports = synchroDecoder

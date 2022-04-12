@@ -9,12 +9,15 @@ This library currently only supports JPEGs and PNGs.  It probably has all manner
 ## Example
 
 ```javascript
-const jpeg64    = "data:image/jpeg;base64,..."
-const imageData = window.synchroDecoder(jpeg64);
-document.getElementById('canvy').getContext('2d').putImageData(imageData, 0, 0);
-```
+const jpeg64 = "data:image/jpeg;base64,..."
 
-(Yeah, we shouldn't just dump `synchroDecoder` onto `window`, but it's good enough for now.)
+const { array, height, width, didSucceed } = window.synchroDecoder(jpeg64);
+
+if (didSucceed) {
+  const imageData = new ImageData(array, width, height);
+  document.getElementById('canvy').getContext('2d').putImageData(imageData, 0, 0);
+}
+```
 
 ## Terms of Use
 
