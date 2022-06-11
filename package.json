@@ -12,7 +12,7 @@
   "repository": "https://github.com/NetLogo/SynchroDecoder",
   "dependencies": {
     "upng-js":                 "2.1.0",
-    "jpeg-js":                 "0.4.3"
+    "jpeg-js":                 "0.4.4"
   },
   "devDependencies": {
     "buffer":                       "6.0.3",
