@@ -21,7 +21,7 @@ module.exports = (grunt) ->
     rollup: {
       main: {
         options: {
-          plugins: [resolve({ browser: true }), commonjs()]
+          plugins: [resolve({ browser: true, preferBuiltins: false }), commonjs()]
         }
         files: {
           'dist/synchrodecoder.mjs': ['target/synchrodecoder.mjs']
