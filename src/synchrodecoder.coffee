@@ -7,11 +7,21 @@ dataURIToBytes = (uri) ->
   raw = window.atob(uri.slice(uri.indexOf(",") + 1))
   new Uint8Array(new ArrayBuffer(raw.length)).map((_, i) -> raw.charCodeAt(i))
 
+aIsPrefixOfB = (a, b) ->
+  for c, i in a
+    if b[i] isnt c
+      return false
+  true
+
+pngSignature = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
+jpgSignature = [0xFF, 0xD8, 0xFF]
+
 synchroDecoder =
   (b64) ->
     bytes = dataURIToBytes(b64)
     try
-      try
+
+      if aIsPrefixOfB(pngSignature, bytes)
 
         image = PNG.decode(bytes)
         array = new Uint8ClampedArray(PNG.toRGBA8(image)[0])
@@ -21,23 +31,23 @@ synchroDecoder =
         else
           throw new Error("Converted PNG bytes have length #{array.length}, but valid PNG bytes would have length #{image.height * image.width * 4}.")
 
-      catch ex
-        if ex.includes("is not a PNG")
+      else if aIsPrefixOfB(jpgSignature, bytes)
 
-          oldBuffer     = window.Buffer
-          window.Buffer = Buffer
-          image         = JPEG.decode(bytes)
-          window.Buffer = oldBuffer
-          array         = new Uint8ClampedArray(image.data)
+        oldBuffer     = window.Buffer
+        window.Buffer = Buffer
+        image         = JPEG.decode(bytes)
+        window.Buffer = oldBuffer
+        array         = new Uint8ClampedArray(image.data)
 
-          if array.length is (image.height * image.width * 4)
-            { array, height: image.height, width: image.width, didSucceed: true }
-          else
-            throw new Error("Converted JPEG bytes have length #{array.length}, but valid JPEG bytes would have length #{image.height * image.width * 4}.")
-
+        if array.length is (image.height * image.width * 4)
+          { array, height: image.height, width: image.width, didSucceed: true }
         else
-          throw ex
-    catch e
+          throw new Error("Converted JPEG bytes have length #{array.length}, but valid JPEG bytes would have length #{image.height * image.width * 4}.")
+
+      else
+        throw new Error("Undecodable file type")
+
+    catch ex
       { didSucceed: false }
 
 export default synchroDecoder
