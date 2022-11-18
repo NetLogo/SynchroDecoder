@@ -50,4 +50,13 @@ synchroDecoder =
     catch ex
       { didSucceed: false }
 
-export default synchroDecoder
+synchroEncoder =
+  # (ImageData) => String
+  (image) ->
+    png    = PNG.encode([image.data.buffer], image.width, image.height, 0)
+    bytes  = new Uint8Array(png)
+    chars  = Array.prototype.map.call(bytes, (b) -> String.fromCharCode(b) ).join("")
+    base64 = btoa(chars)
+    "data:image/png;base64,#{base64}"
+
+export { synchroDecoder, synchroEncoder }
