@@ -1,5 +1,5 @@
 {
-  "name": "synchrodecoder",
+  "name": "@netlogo/synchrodecoder",
   "description": "A JavaScript library for synchronously decoding JPEGs and PNGs to binary data",
   "version": "3.0.0",
   "author": "Center for Connected Learning (https://ccl.northwestern.edu/)",
@@ -11,8 +11,8 @@
   "license": "CC0-1.0",
   "repository": "https://github.com/NetLogo/SynchroDecoder",
   "dependencies": {
-    "upng-js":                 "2.1.0",
-    "jpeg-js":                 "0.4.4"
+    "upng-js": "2.1.0",
+    "jpeg-js": "0.4.4"
   },
   "devDependencies": {
     "buffer":                       "6.0.3",
