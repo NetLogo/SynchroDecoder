@@ -1,7 +1,8 @@
 import { Buffer } from 'buffer/index.js'
 
-import PNG  from 'upng-js/UPNG.js'
-import JPEG from 'jpeg-js/index.js'
+import PNG              from 'upng-js/UPNG.js'
+import JPEG             from 'jpeg-js/index.js'
+import { GifReader }    from 'omggif'
 
 dataURIToBytes = (uri) ->
   raw = window.atob(uri.slice(uri.indexOf(",") + 1))
@@ -15,6 +16,7 @@ aIsPrefixOfB = (a, b) ->
 
 pngSignature = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
 jpgSignature = [0xFF, 0xD8, 0xFF]
+gifSignature = [0x47, 0x49, 0x46, 0x38]
 
 synchroDecoder =
   (b64) ->
@@ -43,6 +45,18 @@ synchroDecoder =
           { array, height: image.height, width: image.width, didSucceed: true }
         else
           throw new Error("Converted JPEG bytes have length #{array.length}, but valid JPEG bytes would have length #{image.height * image.width * 4}.")
+
+      else if aIsPrefixOfB(gifSignature, bytes)
+
+        reader    = new GifReader(bytes)
+        pixelData = new Uint8Array(reader.width * reader.height * 4)
+        reader.decodeAndBlitFrameRGBA(0, pixelData)
+        array     = new Uint8ClampedArray(pixelData.buffer)
+
+        if array.length is (reader.height * reader.width * 4)
+          { array, height: reader.height, width: reader.width, didSucceed: true }
+        else
+          throw new Error("Converted GIF bytes have length #{array.length}, but valid GIF bytes would have length #{reader.height * reader.width * 4}.")
 
       else
         throw new Error("Undecodable file type")

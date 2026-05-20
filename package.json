@@ -1,27 +1,33 @@
 {
   "name": "@netlogo/synchrodecoder",
-  "description": "A JavaScript library for synchronously decoding JPEGs and PNGs to binary data",
+  "description": "A JavaScript library for synchronously decoding GIFs, JPEGs, and PNGs to binary data",
   "version": "3.0.0",
   "author": "Center for Connected Learning (https://ccl.northwestern.edu/)",
   "contributors": [
     "Jason Bertsche <jason.bertsche@gmail.com> (https://www.github.com/TheBizzle)"
   ],
   "homepage": "https://ccl.northwestern.edu/netlogo",
-  "keywords": ["image", "png", "jpeg", "synchronous"],
+  "keywords": [
+    "image",
+    "png",
+    "jpeg",
+    "synchronous"
+  ],
   "license": "CC0-1.0",
   "repository": "https://github.com/NetLogo/SynchroDecoder",
   "dependencies": {
-    "upng-js": "2.1.0",
-    "jpeg-js": "0.4.4"
+    "jpeg-js": "0.4.4",
+    "omggif": "^1.0.10",
+    "upng-js": "2.1.0"
   },
   "devDependencies": {
-    "buffer":                       "6.0.3",
-    "grunt":                        "1.6.2",
-    "grunt-contrib-coffee":         "2.1.0",
-    "grunt-contrib-copy":           "1.0.0",
-    "grunt-rollup":                "12.0.0",
-    "grunt-terser":                 "2.0.0",
-    "@rollup/plugin-commonjs":     "29.0.2",
-    "@rollup/plugin-node-resolve": "16.0.3"
+    "@rollup/plugin-commonjs": "29.0.2",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "buffer": "6.0.3",
+    "grunt": "1.6.2",
+    "grunt-contrib-coffee": "2.1.0",
+    "grunt-contrib-copy": "1.0.0",
+    "grunt-rollup": "12.0.0",
+    "grunt-terser": "2.0.0"
   }
 }
