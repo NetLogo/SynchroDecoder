@@ -1,7 +1,7 @@
 {
   "name": "@netlogo/synchrodecoder",
   "description": "A JavaScript library for synchronously decoding GIFs, JPEGs, and PNGs to binary data",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "Center for Connected Learning (https://ccl.northwestern.edu/)",
   "contributors": [
     "Jason Bertsche <jason.bertsche@gmail.com> (https://www.github.com/TheBizzle)"
