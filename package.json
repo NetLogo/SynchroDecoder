@@ -24,7 +24,7 @@
     "@rollup/plugin-commonjs": "29.0.2",
     "@rollup/plugin-node-resolve": "16.0.3",
     "buffer": "6.0.3",
-    "grunt": "1.6.2",
+    "grunt": "1.6.3",
     "grunt-contrib-coffee": "2.1.0",
     "grunt-contrib-copy": "1.0.0",
     "grunt-rollup": "12.0.0",
